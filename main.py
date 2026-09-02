@@ -10,7 +10,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description = "Structure from Motion")
     parser.add_argument("--images", type=str, required=True)
     parser.add_argument("--extractor", type=str, default="sift", choices=["sift", "orb"])
-    parser.add_argument("--n_features", type=int, default=0)
+    parser.add_argument("--n_features", type=int, default=10000)
     parser.add_argument("--output", type=str, default="output")
 
     return parser.parse_args()
