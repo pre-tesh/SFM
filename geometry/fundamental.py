@@ -1,0 +1,46 @@
+import numpy as np
+
+def normalize_points (pts):
+    mean= np.mean(pts, axis=0)
+    pts_shifted=pts-mean
+    avg_dist = np.mean(np.sqrt(pts_shifted[:,0]**2 +pts_shifted[:,1]**2))
+    scale = np.sqrt(2)/avg_dist
+
+    T = np.array([[scale, 0 , -scale*mean[0]],
+         [0, scale, -scale*mean[1]],
+         [ 0,0,1]])
+
+    pts_h = np.column_stack([pts , np.ones(len(pts))])
+    pts_norm = (T @ pts_h.T).T 
+    pts_norm = pts_norm[:,:2]
+
+    return pts_norm ,T
+    
+
+def eat_pointalgo(pts1,pts2):#cant write 8 :((((
+    #here we calculate the fundamental matrix F from the normalize_points
+    #normalixe the points
+    pts1_norm , T1 = normalize_points(pts1)
+    pts2_norm , T2 = normalize_points(pts2)
+
+    #make the matrix 
+    N = len(pts1_norm)
+    A = np.zeros((N,9))
+    for i in range(N):
+        x,y=pts1_norm[i]
+        xp,yp=pts2_norm[i]
+        A[i]=[xp*x, xp*y , xp , yp*x , yp*y ,yp , x, y, 1]
+
+    # Decompose the matrix 
+    U, S, Vt = np.linalg.svd(A)
+    F= Vt[-1].reshape(3,3)
+
+    #making the matrix rank 2 
+    U2,S2,Vt2 = np.linalg.svd(F)
+    S2[2]=0
+    F= U2 @np.diag(S2)@Vt2
+
+    #de normalize
+    F=T2.T@F@T1 
+
+    return F 
