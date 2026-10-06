@@ -1,20 +1,32 @@
 import numpy as np
 
-def normalize_points (pts):
-    mean= np.mean(pts, axis=0)
-    pts_shifted=pts-mean
-    avg_dist = np.mean(np.sqrt(pts_shifted[:,0]**2 +pts_shifted[:,1]**2))
-    scale = np.sqrt(2)/avg_dist
+def normalize_points(pts):
+    mean = np.mean(pts, axis=0)
+    pts_shifted = pts - mean
+    avg_dist = np.mean(np.sqrt(pts_shifted[:, 0] ** 2 + pts_shifted[:, 1] ** 2))
+    scale = np.sqrt(2) / avg_dist
 
-    T = np.array([[scale, 0 , -scale*mean[0]],
-         [0, scale, -scale*mean[1]],
-         [ 0,0,1]])
+    """
+    The choice for the above normalization is the Hartley normalization, which
+    is a common choice for normalizing points before estimating the fundamental matrix.
+    The idea is to translate the points so that their centroid is at the origin and
+    then scale them so that the average distance from the origin is sqrt(2).
+    This helps in improving the numerical stability of the estimation process.
+    """
 
-    pts_h = np.column_stack([pts , np.ones(len(pts))])
-    pts_norm = (T @ pts_h.T).T 
-    pts_norm = pts_norm[:,:2]
+    T = np.array(
+        [
+            [scale, 0, -scale * mean[0]],
+            [0, scale, -scale * mean[1]],
+            [0, 0, 1],
+        ]
+    )
 
-    return pts_norm ,T
+    pts_h = np.column_stack([pts, np.ones(len(pts))])
+    pts_norm = (T @ pts_h.T).T
+    pts_norm = pts_norm[:, :2]
+
+    return pts_norm, T
     
 
 def eat_pointalgo(pts1,pts2):#cant write 8 :((((
