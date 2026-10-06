@@ -3,7 +3,7 @@ The problem of 3d reconstruction has in he past years developed many fairly adva
 so this is my attempt to implement the SFM pipeline in python. 
 Because I believe that will help me learn a lot .
 
-The final goal that i have will be generating a dense 3d point clouds of 
+The final goal that i have will be generating a dense 3d point clouds of
 1.a bulbasaur plushie  
 3.a kurapika figurine 
 
