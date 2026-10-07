@@ -1,4 +1,4 @@
-Hello , this project is a part of a bigger project , which is  generating  dense 3d point clouds of objects .
+Hello , this project is a part of a bigger project , which is  ***generating  dense 3d point clouds of objects*** .
 The problem of 3d reconstruction has in he past years developed many fairly advanced and ML , DL based approaches , but i like to learn and disect the thoughts behind teh thinking  that researchers and those godly engineers have put into thinking and making everything happen . 
 so this is my attempt to implement the SFM pipeline in python. 
 Because I believe that will help me learn a lot .
