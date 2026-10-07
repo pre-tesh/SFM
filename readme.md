@@ -1,11 +1,11 @@
 Hello , this project is a part of a bigger project , which is  ***generating  dense 3d point clouds of objects*** .
-The problem of 3d reconstruction has in he past years developed many fairly advanced and ML , DL based approaches , but i like to learn and disect the thoughts behind teh thinking  that researchers and those godly engineers have put into thinking and making everything happen . 
+The problem of 3d reconstruction has in he past years developed many fairly advanced ML and DL based approaches , but i like to learn and disect the thoughts that researchers and those godly engineers have put into thinking and making these algorithms. 
 so this is my attempt to implement the SFM pipeline in python. 
 Because I believe that will help me learn a lot .
 
 The final goal that i have will be generating a dense 3d point clouds of
 1.a bulbasaur plushie  
-3.a kurapika figurine 
+2.a kurapika figurine 
 
 SFM stands for structure from motion .
 SO we  are trying to generate a 3d structure from multiple 2d images .
