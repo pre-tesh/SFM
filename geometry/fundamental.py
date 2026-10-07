@@ -7,33 +7,33 @@ def normalize_points(pts):
     scale = np.sqrt(2) / avg_dist
 
     """
-    The choice for the above normalization is the Hartley normalization, which
+    The  above normalization is the Hartley normalization, which
     is a common choice for normalizing points before estimating the fundamental matrix.
     The idea is to translate the points so that their centroid is at the origin and
     then scale them so that the average distance from the origin is sqrt(2).
-    This helps in improving the numerical stability of the estimation process.
     """
 
-    T = np.array(
+    norm_transform = np.array(
         [
-            [scale, 0, -scale * mean[0]],
-            [0, scale, -scale * mean[1]],
-            [0, 0, 1],
+            [    scale,       0     ,   -scale * mean[0]  ],
+            [     0   ,      scale  ,   -scale * mean[1]  ],
+            [     0   ,       0     ,          1          ],
         ]
     )
 
-    pts_h = np.column_stack([pts, np.ones(len(pts))])
-    pts_norm = (T @ pts_h.T).T
-    pts_norm = pts_norm[:, :2]
+    pts_h = np.column_stack([pts, np.ones(len(pts))]) # for making the coordinates homogeneous just append 1 to the end of each point.
+    pts_norm = (norm_transform @ pts_h.T).T
+    pts_norm = pts_norm[:, :2]#dropping the homogenous coordinate 1.
 
-    return pts_norm, T
+    return pts_norm, norm_transform
     
 
 def eat_pointalgo(pts1,pts2):#cant write 8 :((((
-    #here we calculate the fundamental matrix F from the normalize_points
+    #here we calculate the fundamental matrix F from the normalized points
+    
     #normalixe the points
-    pts1_norm , T1 = normalize_points(pts1)
-    pts2_norm , T2 = normalize_points(pts2)
+    pts1_norm , pts1_norm_transform = normalize_points(pts1)
+    pts2_norm , pts2_norm_transform = normalize_points(pts2)
 
     #make the matrix 
     N = len(pts1_norm)
@@ -41,7 +41,7 @@ def eat_pointalgo(pts1,pts2):#cant write 8 :((((
     for i in range(N):
         x,y=pts1_norm[i]
         xp,yp=pts2_norm[i]
-        A[i]=[xp*x, xp*y , xp , yp*x , yp*y ,yp , x, y, 1]
+        A[i]=[ xp*x ,  xp*y , xp ,yp*x ,  yp*y , yp ,x  ,  y  , 1]
 
     # Decompose the matrix 
     U, S, Vt = np.linalg.svd(A)
@@ -53,6 +53,6 @@ def eat_pointalgo(pts1,pts2):#cant write 8 :((((
     F= U2 @np.diag(S2)@Vt2
 
     #de normalize
-    F=T2.T@F@T1 
+    F=pts2_norm_transform.T@F@pts1_norm_transform 
 
     return F 
