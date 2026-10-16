@@ -12,5 +12,7 @@ __pycache__/
 output/
 venv/
 .env
-
+!data/
+!data/Bulbasaur3/
+!data/Bulbasaur3/*.jpg
 output_bulbasaur3_debug/
