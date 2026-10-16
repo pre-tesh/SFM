@@ -4,7 +4,7 @@ This project is part of a larger goal: creating 3D models of real-world objects 
 
 This is a small learning project that reconstructs a sparse 3D point cloud from a set of photos of the same object.
 
-The pipeline uses SIFT features to find the same visual points across photos.
+The pipeline uses SIFT features to find the interesting points across images.
 It estimates camera positions, triangulates 3D points, refines them with bundle
 adjustment, and exports a coloured point cloud.
 
@@ -51,7 +51,7 @@ Each run creates:
 
 ### Seed-pair feature matches
 
-The green lines show SIFT features matched between the two images selected to
+The lines show SIFT features matched between the two images selected to
 start the reconstruction.
 
 ![SIFT feature matches in the seed pair](docs/images/seed-pair-matches.jpg)
