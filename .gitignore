@@ -4,7 +4,13 @@ __pycache__/
 .DS_Store
 *.jpg
 *.png
+!docs/
+!docs/images/
+!docs/images/*.jpg
+!docs/images/*.png
 *.ply
 output/
 venv/
 .env
+
+output_bulbasaur3_debug/

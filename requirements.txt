@@ -1,0 +1,5 @@
+numpy>=1.26
+opencv-python>=4.8
+scipy>=1.10
+matplotlib>=3.7
+plotly>=5.18

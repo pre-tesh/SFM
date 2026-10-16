@@ -13,7 +13,10 @@ def compute_essentialmatrix(F):
     
     K = config.K
     E = K.T @ F @ K
-    return E
+    U, singular_values, Vt = np.linalg.svd(E)
+    # A calibrated essential matrix has two equal nonzero singular values.
+    s = (singular_values[0] + singular_values[1]) / 2.0
+    return U @ np.diag([s, s, 0.0]) @ Vt
 
 def decompose_essentialmatrix(E):
     """ Decompose essential matrix into rotation and translation
