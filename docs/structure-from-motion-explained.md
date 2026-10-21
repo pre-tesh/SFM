@@ -11,6 +11,8 @@ Yes. SfM estimates two things together:
 
 This document explains the geometry behind the pipeline implemented in this repository.
 
+For a more visual browser-friendly version of this explanation, including the same core ideas with larger diagrams, see [Structure from Motion, from pixels to 3D](https://adityakharmalegoat7.github.io/sfm.html).
+
 ## 1. The pinhole camera model
 
 Start with a 3D point in camera coordinates:
