@@ -15,6 +15,8 @@ images → SIFT features → feature matching → RANSAC
        → camera pose → triangulation → bundle adjustment → point cloud
 ```
 
+Want the geometry behind each step? See [Structure from Motion, from pixels to 3D](docs/structure-from-motion-explained.md) for a detailed explanation of the camera model, epipolar geometry, RANSAC, pose recovery, triangulation, PnP, reprojection error, and bundle adjustment.
+
 ## Setup
 
 ```bash
