@@ -66,11 +66,6 @@ start the reconstruction.
 
 ![Sparse point cloud](docs/images/cloud-without-cameras.png)
 
-## Test
-
-```bash
-python -m unittest -v test_sfm_regressions.py
-```
 
 This is a sparse SfM project, not a dense mesh reconstruction pipeline.
 
